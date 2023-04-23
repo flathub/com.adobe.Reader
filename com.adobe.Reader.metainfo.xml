@@ -13,8 +13,9 @@
 
   <description>
     <p>
-      Adobe Reader software is the free trusted standard for reliably viewing, printing, and annotating PDF documents. It's the only PDF file viewer that can open and interact with all types of PDF content, including forms and multimedia.
+      Adobe Reader software is the official Adobe software for viewing, printing, and annotating PDF documents.
     </p>
+    <p>NOTE: This software is unmaintained by the vendor and may contain security vulnerabilities.</p>
     <p>NOTE: This wrapper is not verified by, affiliated with, or supported by Adobe.</p>
   </description>
 
