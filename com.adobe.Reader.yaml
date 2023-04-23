@@ -3,6 +3,8 @@ app-id: com.adobe.Reader
 runtime: org.freedesktop.Platform
 runtime-version: &runtime-version '22.08'
 sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Compat.i386
 
 finish-args:
   - --share=ipc
@@ -64,6 +66,20 @@ modules:
         url: https://old-releases.ubuntu.com/ubuntu/pool/main/g/gdk-pixbuf/libgdk-pixbuf2.0-0_2.28.0-0ubuntu1_i386.deb
         sha256: 90841a12debec181eef38aad3eddb154bcd3c49ebc6c6661341603cc81ba495f
 
+  # Needed to remove execstack from binaries which fails with SELinux
+  - name: patchelf
+    sources:
+      - type: archive
+        url: https://github.com/NixOS/patchelf/releases/download/0.18.0/patchelf-0.18.0.tar.gz
+        sha256: 64de10e4c6b8b8379db7e87f58030f336ea747c0515f381132e810dbf84a86e7
+        x-checker-data:
+          type: anitya
+          project-id: 2598
+          stable-only: true
+          url-template: https://github.com/NixOS/patchelf/releases/download/$version/patchelf-$version.tar.gz
+    cleanup:
+      - /share
+
   # Install Adobe Reader in extra-data (not redistributable)
   - name: adobe-reader
     buildsystem: simple
@@ -83,6 +99,7 @@ modules:
         commands:
           - tar xjvf AdbeRdr9.5.5-1_i486linux_enu.tar.bz2
           - ./AdobeReader/INSTALL --install_path=/app/extra
+          - patchelf --clear-execstack /app/extra/Adobe/Reader9/Reader/intellinux/lib/libcrypto.so.0.9.8
           - rm -rv AdobeReader/ AdbeRdr9.5.5-1_i486linux_enu.tar.bz2
       - type: extra-data
         filename: AdbeRdr9.5.5-1_i486linux_enu.tar.bz2
