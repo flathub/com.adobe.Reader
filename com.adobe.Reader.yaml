@@ -5,6 +5,7 @@ runtime-version: &runtime-version '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.toolchain-i386
 
 finish-args:
   - --share=ipc
@@ -15,6 +16,17 @@ finish-args:
 
 command: acroread
 tags: [ proprietary ]
+
+# Remember to add "build-options: *compat-i386-build-options" to every
+# 32-bit source-build module
+x-compat-i386-build-options: &compat-i386-build-options
+  prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+  ldflags: -L/app/lib32
+  prepend-path: /usr/lib/sdk/toolchain-i386/bin
+  env:
+    CC: i686-unknown-linux-gnu-gcc
+    CXX: i686-unknown-linux-gnu-g++
+  libdir: /app/lib32
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
