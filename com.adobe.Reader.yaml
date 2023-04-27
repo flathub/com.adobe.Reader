@@ -67,16 +67,19 @@ modules:
         sha256: fb9ee37a7789f43fd92a1f3c3e8022c56f9b1353d15f46277489c1a91ee5be79
 
   - name: gdk-pixbuf-xlib
-    buildsystem: simple
-    build-commands:
-      - ar p libgdk-pixbuf2.0-0_2.28.0-0ubuntu1_i386.deb data.tar.xz | tar xvJ
-      - rm -v libgdk-pixbuf2.0-0_2.28.0-0ubuntu1_i386.deb
-      - mkdir -pv $FLATPAK_DEST/lib32/
-      - cp -rv ./usr/lib/i386-linux-gnu/* $FLATPAK_DEST/lib32/
+    buildsystem: meson
+    build-options: *compat-i386-build-options
     sources:
-      - type: file
-        url: https://old-releases.ubuntu.com/ubuntu/pool/main/g/gdk-pixbuf/libgdk-pixbuf2.0-0_2.28.0-0ubuntu1_i386.deb
-        sha256: 90841a12debec181eef38aad3eddb154bcd3c49ebc6c6661341603cc81ba495f
+      - type: archive
+        url: https://download.gnome.org/sources/gdk-pixbuf-xlib/2.40/gdk-pixbuf-xlib-2.40.2.tar.xz
+        sha256: 8b8e1c270ec16a06f665ea841f8e4e167eaa0118d0cbfeeade43745f09198ff7
+    cleanup:
+      - '*.a'
+      - '*.la'
+      - /bin
+      - /include
+      - /lib/debug
+      - /share
 
   # Needed to remove execstack from binaries which fails with SELinux
   - name: patchelf
