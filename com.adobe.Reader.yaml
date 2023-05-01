@@ -54,18 +54,7 @@ modules:
           /app/lib/i386-linux-gnu
 
   # Grab old binaries for missing libraries
-  - name: gtk2
-    buildsystem: simple
-    build-commands:
-      - ar p libgtk2.0-0_2.24.17-0ubuntu2_i386.deb data.tar.xz | tar xvJ
-      - rm -v libgtk2.0-0_2.24.17-0ubuntu2_i386.deb
-      - mkdir -pv $FLATPAK_DEST/lib32/
-      - cp -rv ./usr/lib/i386-linux-gnu/* $FLATPAK_DEST/lib32/
-    sources:
-      - type: file
-        url: https://old-releases.ubuntu.com/ubuntu/pool/main/g/gtk+2.0/libgtk2.0-0_2.24.17-0ubuntu2_i386.deb
-        sha256: fb9ee37a7789f43fd92a1f3c3e8022c56f9b1353d15f46277489c1a91ee5be79
-
+  - shared-modules-subtree/gtk2/gtk2.json
   - name: gdk-pixbuf-xlib
     buildsystem: meson
     build-options: *compat-i386-build-options
