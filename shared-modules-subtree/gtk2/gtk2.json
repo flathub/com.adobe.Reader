@@ -52,7 +52,8 @@
         "--disable-dependency-tracking",
         "--disable-gtk-doc-html",
         "--disable-introspection",
-        "--with-xinput=xfree"
+        "--with-xinput=xfree",
+        "CFLAGS=-O0"
       ],
       "sources": [
         {
