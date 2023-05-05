@@ -52,9 +52,11 @@
         "--disable-dependency-tracking",
         "--disable-gtk-doc-html",
         "--disable-introspection",
-        "--with-xinput=xfree",
-        "CFLAGS=-O0"
+        "--with-xinput=xfree"
       ],
+      "build-options" : {
+        "cflags": "-O0"
+      },
       "sources": [
         {
           "type": "archive",
