@@ -37,6 +37,10 @@ add-extensions:
     version: *runtime-version
     no-autodownload: true
 
+# Needed for gtk2, see PR #8
+build-options:
+  cflags: -O0
+
 modules:
   # https://docs.flatpak.org/en/latest/multiarch.html
   - name: bundle-setup
@@ -54,7 +58,7 @@ modules:
           /app/lib/i386-linux-gnu
 
   # Grab old binaries for missing libraries
-  - shared-modules-subtree/gtk2/gtk2.json
+  - shared-modules/gtk2/gtk2.json
   - name: gdk-pixbuf-xlib
     buildsystem: meson
     build-options: *compat-i386-build-options
