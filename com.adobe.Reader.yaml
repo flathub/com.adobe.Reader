@@ -17,9 +17,8 @@ finish-args:
 command: acroread
 tags: [ proprietary ]
 
-# Remember to add "build-options: *compat-i386-build-options" to every
-# 32-bit source-build module
-x-compat-i386-build-options: &compat-i386-build-options
+build-options:  
+  # https://docs.flatpak.org/en/latest/multiarch.html
   prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
   ldflags: -L/app/lib32
   prepend-path: /usr/lib/sdk/toolchain-i386/bin
@@ -27,7 +26,10 @@ x-compat-i386-build-options: &compat-i386-build-options
     CC: i686-unknown-linux-gnu-gcc
     CXX: i686-unknown-linux-gnu-g++
   libdir: /app/lib32
+  # Needed for gtk2, see PR #8
+  cflags: -O0
 
+# https://docs.flatpak.org/en/latest/multiarch.html 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
@@ -54,21 +56,9 @@ modules:
           /app/lib/i386-linux-gnu
 
   # Grab old binaries for missing libraries
-  - name: gtk2
-    buildsystem: simple
-    build-commands:
-      - ar p libgtk2.0-0_2.24.17-0ubuntu2_i386.deb data.tar.xz | tar xvJ
-      - rm -v libgtk2.0-0_2.24.17-0ubuntu2_i386.deb
-      - mkdir -pv $FLATPAK_DEST/lib32/
-      - cp -rv ./usr/lib/i386-linux-gnu/* $FLATPAK_DEST/lib32/
-    sources:
-      - type: file
-        url: https://old-releases.ubuntu.com/ubuntu/pool/main/g/gtk+2.0/libgtk2.0-0_2.24.17-0ubuntu2_i386.deb
-        sha256: fb9ee37a7789f43fd92a1f3c3e8022c56f9b1353d15f46277489c1a91ee5be79
-
+  - shared-modules/gtk2/gtk2.json
   - name: gdk-pixbuf-xlib
     buildsystem: meson
-    build-options: *compat-i386-build-options
     sources:
       - type: archive
         url: https://download.gnome.org/sources/gdk-pixbuf-xlib/2.40/gdk-pixbuf-xlib-2.40.2.tar.xz
