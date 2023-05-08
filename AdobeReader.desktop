@@ -6,6 +6,6 @@ Type=Application
 GenericName=PDF Viewer
 Terminal=false
 Icon=com.adobe.Reader
-X-KDE-StartupNotify=false
+StartupNotify=false
 Categories=Office;Viewer;
 InitialPreference=9
