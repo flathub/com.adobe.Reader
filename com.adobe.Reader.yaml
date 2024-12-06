@@ -1,7 +1,7 @@
 app-id: com.adobe.Reader
 
 runtime: org.freedesktop.Platform
-runtime-version: &runtime-version '23.08'
+runtime-version: &runtime-version '24.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Compat.i386
@@ -27,7 +27,7 @@ build-options:
     CXX: i686-unknown-linux-gnu-g++
   libdir: /app/lib32
   # Needed for gtk2, see PR #8
-  cflags: -O0
+  cflags: -O0 -fpermissive
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
