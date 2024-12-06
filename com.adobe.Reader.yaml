@@ -84,6 +84,34 @@ modules:
     cleanup:
       - /share
 
+  # Fix for 64-bit inodes
+  - name: fix32
+    buildsystem: simple
+    build-commands:
+      - gcc -c -fPIC -fno-stack-protector -m32 inode64.c
+      - ld -shared -melf_i386 --version-script vers -o inode64.so inode64.o
+      - install -Dm0644 inode64.so -t /app/lib
+      - install -Dm0755 fix32 -t /app/bin
+    sources:
+      - type: file
+        url: https://www.mjr19.org.uk/sw/inode64.c
+        sha256: 255c9ebde8092fd8c125dcc253e3ca4f2297e359fad2ea131e70065e0fec1cd1
+      - type: inline
+        dest-filename: vers
+        contents: |
+          GLIBC_2.0 {
+            global:
+              readdir;
+              __fxstat;
+              __xstat;
+              __lxstat;
+          };
+      - type: script
+        dest-filename: fix32
+        commands:
+          - export LD_PRELOAD="${LD_PRELOAD:+${LD_PRELOAD}:}/app/lib/inode64.so"
+          - exec ${1+"$@"}
+
   # Install Adobe Reader in extra-data (not redistributable)
   - name: adobe-reader
     buildsystem: simple
