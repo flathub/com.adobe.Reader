@@ -33,6 +33,7 @@ add-extensions:
   org.freedesktop.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
     version: *runtime-version
+    no-autodownload: false
   org.freedesktop.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
     version: *runtime-version
