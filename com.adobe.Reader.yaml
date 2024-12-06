@@ -72,6 +72,10 @@ modules:
 
   # Needed to remove execstack from binaries which fails with SELinux
   - name: patchelf
+    build-options:
+      env:
+        CC: cc
+        CXX: c++
     sources:
       - type: archive
         url: https://github.com/NixOS/patchelf/releases/download/0.18.0/patchelf-0.18.0.tar.gz
