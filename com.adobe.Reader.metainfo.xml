@@ -4,6 +4,7 @@
 
   <name>Adobe Reader</name>
   <summary>PDF viewer</summary>
+  <developer_name>Adobe Inc.</developer_name>
 
   <url type="homepage">http://www.adobe.com/products/reader.html</url>
   <url type="help">https://helpx.adobe.com/security/products/reader-linux.html</url>
