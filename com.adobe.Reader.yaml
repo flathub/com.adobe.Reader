@@ -68,7 +68,6 @@ modules:
       - '*.la'
       - /bin
       - /include
-      - /lib/debug
       - /share
 
   # Needed to remove execstack from binaries which fails with SELinux
