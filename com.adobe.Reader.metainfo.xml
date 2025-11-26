@@ -67,4 +67,10 @@
     <release version="7.0.1" date="2006-05-30"/>
     <release version="7.0" date="2005-09-06"/>
   </releases>
+  <keywords>
+    <keyword>pdf viewer</keyword>
+    <keyword>pdf reader</keyword>
+    <keyword>annotate pdf</keyword>
+    <keyword>pdf editor</keyword>
+  </keywords>
 </component>
