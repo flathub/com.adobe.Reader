@@ -13,11 +13,11 @@
   <project_license>LicenseRef-proprietary=https://www.adobe.com/products/eulas/pdfs/Reader_Player_AIR_WWEULA-Combined-20080204_1313.pdf</project_license>
 
   <description>
+    <p>**NOTE: This wrapper is not verified by, affiliated with, or supported by Adobe.**</p>    
+    <p>NOTE: This software is unmaintained by the vendor and may contain security vulnerabilities.</p>
     <p>
       Adobe Reader software is the official Adobe software for viewing, printing, and annotating PDF documents.
     </p>
-    <p>NOTE: This software is unmaintained by the vendor and may contain security vulnerabilities.</p>
-    <p>NOTE: This wrapper is not verified by, affiliated with, or supported by Adobe.</p>
   </description>
 
   <launchable type="desktop-id">com.adobe.Reader.desktop</launchable>
