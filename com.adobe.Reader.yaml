@@ -15,10 +15,10 @@ finish-args:
   - --persist=.adobe
 
 command: acroread
-tags: [ proprietary ]
+tags: [proprietary]
 
 # https://docs.flatpak.org/en/latest/multiarch.html
-build-options:  
+build-options:
   prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
   ldflags: -L/app/lib32
   prepend-path: /usr/lib/sdk/toolchain-i386/bin
@@ -78,8 +78,8 @@ modules:
         CXX: c++
     sources:
       - type: archive
-        url: https://github.com/NixOS/patchelf/releases/download/0.18.0/patchelf-0.18.0.tar.gz
-        sha256: 64de10e4c6b8b8379db7e87f58030f336ea747c0515f381132e810dbf84a86e7
+        url: https://github.com/NixOS/patchelf/releases/download/0.19.1/patchelf-0.19.1.tar.gz
+        sha256: 491108728f120ce05b539934b41a750235031a6df8abc6b47e57aff7de15094d
         x-checker-data:
           type: anitya
           project-id: 2598
