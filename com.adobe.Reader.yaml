@@ -61,7 +61,8 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gdk-pixbuf-xlib/2.40/gdk-pixbuf-xlib-2.40.2.tar.xz
+        url: 
+          https://download.gnome.org/sources/gdk-pixbuf-xlib/2.40/gdk-pixbuf-xlib-2.40.2.tar.xz
         sha256: 8b8e1c270ec16a06f665ea841f8e4e167eaa0118d0cbfeeade43745f09198ff7
     cleanup:
       - '*.a'
@@ -97,13 +98,15 @@ modules:
         CXX: c++
     sources:
       - type: archive
-        url: https://github.com/NixOS/patchelf/releases/download/0.19.2/patchelf-0.19.2.tar.gz
-        sha256: 78cb26bda2b89fababfe189c2f6507240340f1aa45dec2eb49a39473a50ceea1
+        url: 
+          https://github.com/NixOS/patchelf/releases/download/0.19.3/patchelf-0.19.3.tar.gz
+        sha256: fac76a3c0b730e8d53ea1d10cd6015322d78c9900af91736f2cca51d5837b612
         x-checker-data:
           type: anitya
           project-id: 2598
           stable-only: true
-          url-template: https://github.com/NixOS/patchelf/releases/download/$version/patchelf-$version.tar.gz
+          url-template: 
+            https://github.com/NixOS/patchelf/releases/download/$version/patchelf-$version.tar.gz
     cleanup:
       - /share
 
@@ -158,7 +161,8 @@ modules:
           - rm -rv AdobeReader/ AdbeRdr9.5.5-1_i486linux_enu.tar.bz2
       - type: extra-data
         filename: AdbeRdr9.5.5-1_i486linux_enu.tar.bz2
-        url: https://download.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i486linux_enu.tar.bz2
+        url: 
+          https://download.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i486linux_enu.tar.bz2
         sha256: ee0ea9c65b38abd40ec7c92654e767dc138757f02aef5ae92f74e2dc75ac6540
         size: 57127348
       - type: file
